@@ -1,5 +1,12 @@
 
 terraform {
+
+  cloud {
+    organization = "testing-labs"
+    workspaces {
+      name = "github-actions"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
