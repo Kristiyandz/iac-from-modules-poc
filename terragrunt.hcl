@@ -32,22 +32,22 @@ generate "provider" {
   EOF
 }
 
-# Configure Terragrunt to automatically store tfstate files in an S3 bucket
-# remote_state {
-#   backend = "s3"
-#   config = {
-#     encrypt = true
-#     bucket  = "simple-app-${local.env}-terraform"
-#     key     = "test-app/${path_relative_to_include()}/terraform.tfstate"
-#     region  = local.aws_region
-#     # dynamo_table = "terraform_locks"
-#   }
+Configure Terragrunt to automatically store tfstate files in an S3 bucket
+remote_state {
+  backend = "s3"
+  config = {
+    encrypt = true
+    bucket  = "simple-app-${local.env}-terraform"
+    key     = "${path_relative_to_include()}/terraform.tfstate"
+    region  = local.aws_region
+    # dynamo_table = "terraform_locks"
+  }
 
-#   generate = {
-#     path      = "backend.tf"
-#     if_exists = "overwrite_terragrunt"
-#   }
-# }
+  generate = {
+    path      = "backend.tf"
+    if_exists = "overwrite_terragrunt"
+  }
+}
 
 inputs = merge(
   local.account_vars.locals,
