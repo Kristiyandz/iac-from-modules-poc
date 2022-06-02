@@ -15,12 +15,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      # - name: Setup Terraform
-      #   uses: hashicorp/setup-terraform@v1
-      #   with:
-      #     terraform_version: 1.1.0
-      #     cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
