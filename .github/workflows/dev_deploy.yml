@@ -52,7 +52,7 @@ jobs:
 
       - name: Plan Terragrunt
         working-directory: dev/eu-west-2/dev
-        run: terragrunt run-all plan
+        run: terragrunt run-all plan --terragrunt-non-interactive
 
       # - name: Terraform Plan Status
       #   if: steps.plan.outcome == 'failure'
