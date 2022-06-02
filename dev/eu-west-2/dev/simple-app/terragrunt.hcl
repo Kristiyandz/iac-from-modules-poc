@@ -22,4 +22,8 @@ locals {
   include {
     path = find_in_parent_folders()
   }
+
+  inputs = {
+    aws_s3_bucket = "tf-example-kris
+  }
 }
