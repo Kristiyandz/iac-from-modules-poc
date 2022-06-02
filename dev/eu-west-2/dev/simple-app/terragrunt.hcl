@@ -9,6 +9,8 @@ locals {
 
   aws_region = local.region.locals.aws_region
 
+  env = local.environment_vars.locals.environment
+
   env_tags = {
     Component   = "Test App"
     Environment = local.environment.locals.environment
