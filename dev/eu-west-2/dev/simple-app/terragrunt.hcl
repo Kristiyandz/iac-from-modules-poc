@@ -7,7 +7,7 @@ locals {
 
   aws_account_id = local.account.locals.aws_account_id
 
-  aws_region = local.region.locals.environment
+  aws_region = local.region.locals.aws_region
 
   env_tags = {
     Component   = "Test App"
