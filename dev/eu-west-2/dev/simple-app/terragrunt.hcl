@@ -13,7 +13,7 @@ locals {
 
   env_tags = {
     Component   = "Test App"
-    Environment = local.environment.locals.environment
+    Environment = local.environment_vars.locals.environment
     Account     = local.account.locals.aws_account_id
   }
 }
