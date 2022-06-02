@@ -5,6 +5,8 @@ locals {
 
   account = read_terragrunt_config(find_in_parent_folders("account.hcl"))
 
+  region = read_terragrunt_config(find_in_parent_folders("region.hcl"))
+
   aws_account_id = local.account.locals.aws_account_id
 
   aws_region = local.region.locals.aws_region
