@@ -21,6 +21,11 @@ jobs:
           terraform_version: 1.1.0
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
+      - name: Setup Terragrunt
+        uses: autero1/action-terragrunt@v1.1.0
+        with:
+          terragrunt_version: latest
+
       - name: Terraform Init
         id: init
         run: terraform init
@@ -35,7 +40,6 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        # if: github.event_name == 'pull_request'
         run: terraform plan -no-color
         continue-on-error: true
 
@@ -43,13 +47,8 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-      - name: Terraform Apply
-        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
-
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@master
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: eu-west-2
+      # - name: Terraform Apply
+      #   run: terraform apply -auto-approve
+      - name: Apply Terragrunt
+        working-directory: dev/eu-west-2/dev
+        run: terragrunt run-all apply --terragrunt-non-interactive
