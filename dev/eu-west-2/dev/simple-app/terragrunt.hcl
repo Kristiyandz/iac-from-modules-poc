@@ -14,16 +14,17 @@ locals {
     Environment = local.environment.locals.environment
     Account     = local.account.locals.aws_account_id
   }
-
-  terraform {
-    source = "${path_relative_from_include()}/modules//simple-app"
-  }
-
-  include {
-    path = find_in_parent_folders()
-  }
-
-  inputs = {
-    aws_s3_bucket = "tf-example-kris@"
-  }
 }
+
+terraform {
+  source = "${path_relative_from_include()}/modules//simple-app"
+}
+
+include {
+  path = find_in_parent_folders()
+}
+
+inputs = {
+  aws_s3_bucket = "tf-example-kris@"
+}
+
