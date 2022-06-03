@@ -21,7 +21,7 @@ locals {
 }
 
 terraform {
-  source = "${path_relative_from_include()}/modules//simple-app"
+  source = "${path_relative_from_include()}/modules//s3"
 }
 
 include {
