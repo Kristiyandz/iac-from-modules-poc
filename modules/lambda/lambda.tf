@@ -34,6 +34,10 @@ resource "aws_lambda_function" "my_test_lambda" {
   #     "EXAMPLE_SECRET" = "${var.example_secret}"
   #   }
   # }
+
+  depends_on = [
+    data.archive_file.my_test_lambda_archive
+  ]
 }
 
 # resource "aws_lambda_permission" "lambda" {
