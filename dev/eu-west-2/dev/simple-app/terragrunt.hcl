@@ -29,6 +29,6 @@ include {
 }
 
 inputs = {
-  aws_s3_bucket = "tf-example-kris@"
+  aws_s3_bucket = "tf-example-kris"
 }
 

@@ -8,7 +8,7 @@ on:
 
 jobs:
   terraform:
-    name: "Terraform"
+    name: "Terraform Deploy Dev"
     runs-on: ubuntu-latest
 
     steps:
@@ -32,28 +32,10 @@ jobs:
         with:
           terragrunt_version: latest
 
-      - name: Terraform Init
-        id: init
-        run: terraform init
-
-      - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
-
-      - name: Terraform Validate
-        id: validate
-        run: terraform validate -no-color
-
       - name: Plan Terragrunt
         working-directory: dev/eu-west-2/dev
         run: terragrunt run-all plan --terragrunt-non-interactive
 
-      # - name: Terraform Plan Status
-      #   if: steps.plan.outcome == 'failure'
-      #   run: exit 1
-
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve
       - name: Apply Terragrunt
         working-directory: dev/eu-west-2/dev
         run: terragrunt run-all apply --terragrunt-non-interactive
