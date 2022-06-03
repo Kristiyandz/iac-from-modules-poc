@@ -1,5 +1,0 @@
-data "archive_file" "my_test_lambda_archive" {
-  type        = "zip"
-  source_file = "node/my_test_lambda.ts"
-  output_path = "outputs/my_test_lambda_archive.zip"
-}
