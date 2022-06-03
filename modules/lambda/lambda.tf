@@ -25,7 +25,7 @@ resource "aws_lambda_function" "my_test_lambda" {
   handler       = "my_test_lambda.handler"
 
   # Lambda Runtimes can be found here: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-  runtime = "nodejs10.x"
+  runtime = "nodejs14.x"
   timeout = "30"
   # memory_size = local.lambda_memory
 
