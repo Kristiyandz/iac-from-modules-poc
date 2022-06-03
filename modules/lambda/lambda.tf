@@ -1,21 +1,28 @@
-# data "archive_file" "my_test_lambda_archive" {
-#   type        = "zip"
-#   source_dir  = "${path.module}/../lambda/dist"
-#   output_path = "${path.module}/../lambda/dist/function.zip"
-# }
+resource "aws_iam_role" "iam_for_lambda" {
+  name = "iam_for_lambda"
 
-# resource "aws_lambda_layer_version" "dependency_layer" {
-#   filename            = "${path.module}/../dist/layers/layers.zip"
-#   layer_name          = "dependency_layer"
-#   compatible_runtimes = ["nodejs10.x"]
-#   source_code_hash    = "${base64sha256(file("${path.module}/../dist/layers/layers.zip"))}"
-# }
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "lambda.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
 
 resource "aws_lambda_function" "my_test_lambda" {
   function_name = var.function_name
   filename      = data.archive_file.my_test_lambda_archive.output_path
-  # role          = aws_iam_role.lambda_role.arn
-  handler = "my_test_lambda.handler"
+  role          = aws_iam_role.iam_for_lambda.arn
+  handler       = "my_test_lambda.handler"
 
   # Lambda Runtimes can be found here: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
   runtime = "nodejs10.x"
