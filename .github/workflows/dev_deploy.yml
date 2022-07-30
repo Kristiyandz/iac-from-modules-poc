@@ -36,6 +36,23 @@ jobs:
         working-directory: dev/eu-west-2/dev
         run: terragrunt run-all plan --terragrunt-non-interactive
 
+      - name: Setup Infracost
+        uses: infracost/actions/seup@v1
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+      - name: Generate Infracost JSON
+        run: |
+          infracost configure set currency GBP
+          infracost breakdown --path . --format json --usage-file infracost-usage.yml --out-file /tmp/infracost.json
+        working-directory: dev/eu-west-2/dev
+
+      - name: Post Infracost comment
+        uses: infracost/actions/comment@v1
+        with:
+          path: /tmp/infracost.json
+          behavior: hide-and-new
+
       - name: Apply Terragrunt
         working-directory: dev/eu-west-2/dev
         run: terragrunt run-all apply --terragrunt-non-interactive
