@@ -21,7 +21,7 @@ locals {
 }
 
 terraform {
-  source = "git::git@github.com:Kristiyandz/vpc-module.git//vpc?ref=v1.1.0"
+  source = "git::https://github.com/Kristiyandz/vpc-module.git//vpc?ref=v1.1.0"
 }
 
 include {
