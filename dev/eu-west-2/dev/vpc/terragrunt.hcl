@@ -21,7 +21,7 @@ locals {
 }
 
 terraform {
-  source = "${path_relative_from_include()}/modules//s3"
+  source = "git::git@github.com:Kristiyandz/vpc-module.git//vpc?ref=v1.1.0"
 }
 
 include {
@@ -29,6 +29,10 @@ include {
 }
 
 inputs = {
-  aws_s3_bucket = "tf-example-kris"
+  aws_region  = locals.aws_region
+  environment = locals.env
+  tags        = merge(locals.common_tags, locals.env_tags)
+  vpc_cidr    = "10.0.0.0/16"
+  application = "kirs-test-vpc-module-app"
 }
 
