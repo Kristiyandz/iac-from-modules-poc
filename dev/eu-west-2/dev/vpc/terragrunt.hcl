@@ -29,11 +29,10 @@ include {
 }
 
 inputs = {
-  aws_region  = locals.aws_region
-  environment = locals.env
-  tags        = merge(locals.common_tags, locals.env_tags)
+  aws_region  = local.region.locals.aws_region
+  environment = local.environment_vars.locals.environment
+  tags        = merge(local.common_tags.locals.default_tags, local.env_tags)
   vpc_cidr    = "10.0.0.0/16"
   application = "kirs-test-vpc-module-app"
 }
-/*foo*/
 
