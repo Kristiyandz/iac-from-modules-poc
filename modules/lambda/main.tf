@@ -28,7 +28,7 @@ resource "aws_lambda_function" "my_test_lambda" {
   function_name    = var.function_name
   filename         = data.archive_file.my_test_lambda_archive.output_path
   role             = aws_iam_role.iam_for_lambda.arn
-  handler          = "my_test_lambda.handler"
+  handler          = "testLambda.handler"
   source_code_hash = filebase64sha256(data.archive_file.my_test_lambda_archive.output_path)
 
   # Lambda Runtimes can be found here: https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
