@@ -29,12 +29,13 @@ include {
 }
 
 inputs = {
-  aws_region     = local.region.locals.aws_region
-  environment    = local.environment_vars.locals.environment
-  tags           = merge(local.common_tags.locals.default_tags, local.env_tags)
-  vpc_cidr       = "10.27.0.0/18"
-  azs            = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
-  public_subnets = ["10.27.0.0/27", "10.27.0.32/27", "10.27.0.64/27"]
-  application    = "kirs-test-vpc-module-app"
+  aws_region      = local.region.locals.aws_region
+  environment     = local.environment_vars.locals.environment
+  tags            = merge(local.common_tags.locals.default_tags, local.env_tags)
+  vpc_cidr        = "10.27.0.0/18"
+  azs             = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
+  public_subnets  = ["10.27.0.0/27", "10.27.0.32/27", "10.27.0.64/27"]
+  private_subnets = ["10.27.0.96/27", "10.27.0.128/27", "10.27.0.160/27"]
+  application     = "kirs-test-vpc-module-app"
 }
 
