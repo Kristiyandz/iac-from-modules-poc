@@ -1,7 +1,7 @@
 data "archive_file" "my_test_lambda_archive" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambda/dist"
-  output_path = "${path.module}/../lambda/dist/function.zip"
+  source_file = "./node/testLambda.ts"
+  output_path = "lambda/dist/testLambda.zip"
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
