@@ -1,6 +1,6 @@
 data "archive_file" "my_test_lambda_archive" {
   type        = "zip"
-  source_file = "./lambda/dist/testLambda.js"
+  source_file = "./node/testLambda.ts"
   output_path = "outputs/testLambda.zip"
 }
 
