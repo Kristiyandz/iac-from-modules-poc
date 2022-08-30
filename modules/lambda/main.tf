@@ -1,7 +1,7 @@
 data "archive_file" "my_test_lambda_archive" {
   type        = "zip"
-  source_file = "./node/testLambda.ts"
-  output_path = "outputs/my_test_lambda_archive.zip"
+  source_file = "./lambda/dist/testLambda.js"
+  output_path = "outputs/testLambda.zip"
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
